@@ -1,14 +1,14 @@
 {
-  "name": "distributed-systems-ca1",
+  "name": "fyp_angular2",
   "version": "1.0.0",
-  "description": "Facilities management system built using the MEAN stack and Angular 2.",
+  "description": "Shyft - Package Transportation System.",
   "main": "index.js",
   "scripts": {
     "start": "node index.js"
   },
   "repository": {
     "type": "git",
-    "url": "git+https://github.com/EnjoiPandaCow/distributed-systems-ca1.git"
+    "url": "git+https://github.com/EnjoiPandaCow/fyp_angular2.git"
   },
   "keywords": [
     "MEAN",
@@ -20,9 +20,9 @@
   "author": "CJ O'Sullivan",
   "license": "ISC",
   "bugs": {
-    "url": "https://github.com/EnjoiPandaCow/distributed-systems-ca1/issues"
+    "url": "https://github.com/EnjoiPandaCow/fyp_angular2/issues"
   },
-  "homepage": "https://github.com/EnjoiPandaCow/distributed-systems-ca1#readme",
+  "homepage": "https://github.com/EnjoiPandaCow/fyp_angular2#readme",
   "dependencies": {
     "bcrypt-nodejs": "0.0.3",
     "body-parser": "^1.18.2",
