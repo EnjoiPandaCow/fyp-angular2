@@ -1,0 +1,30 @@
+.panel {
+  margin-top: 1em;
+  border: solid;
+  border-width: 1px;
+}
+
+.panel-heading {
+  background-color: lightgrey ;
+  border-bottom: solid;
+  border-width: 1px;
+}
+
+.panel-footer {
+  background-color: lightgrey ;
+  border-top: solid;
+  border-width: 1px;
+
+}
+
+.btn-info {
+  margin-left: 13px;
+  margin-bottom: 10px;
+  margin-top: 10px;
+}
+
+.btn-danger {
+  margin-left: 1px;
+  margin-bottom: 10px;
+  margin-top: 10px;
+}
