@@ -1,35 +1,42 @@
-<!-- Fixed navbar -->
-<nav class="navbar navbar-default">
-  <div class="container">
-    <div class="navbar-header">
-      <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#navbar" aria-expanded="false" aria-controls="navbar">
-        <span class="sr-only">Toggle navigation</span>
-        <span class="icon-bar"></span>
-        <span class="icon-bar"></span>
-        <span class="icon-bar"></span>
-      </button>
-      <a class="navbar-brand" routerLink="/home">Facility Management System</a>
-    </div>
-    <div id="navbar" class="navbar-collapse collapse">
+<nav class="navbar navbar-expand-lg navbar-light bg-light navbar-fixed-top">
+  <a class="navbar-brand" href="/"><img src="../../../assets/shyft_logo_transparent.png" alt="shyft.logo" height="45"></a>
+  <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#shyftNavbar" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
+    <span class="navbar-toggler-icon"></span>
+  </button>
+  <div class="collapse navbar-collapse" id="shyftNavbar">
+    <ul class="navbar-nav ml-auto">
 
-      <ul class="nav navbar-nav navbar-right">
+      <!-- Profile Nav Bar Link -->
+      <li *ngIf="authService.loggedIn()" [routerLinkActive]="['active']" [routerLinkActiveOptions]="{exact:true}" class="nav-item active">
+        <a class="nav-link" routerLink="/profile">Profile</a>
+      </li>
 
-        <li [routerLinkActive]="['active']" [routerLinkActiveOptions]="{exact:true}"><a routerLink="/">Home</a></li>
+      <!-- Reservations Nav Bar Link -->
+      <li *ngIf="authService.loggedIn()" [routerLinkActive]="['active']" [routerLinkActiveOptions]="{exact:true}" class="nav-item active">
+        <a class="nav-link" routerLink="/reservation">Reservations</a>
+      </li>
 
-        <li *ngIf="authService.loggedIn()" [routerLinkActive]="['active']" [routerLinkActiveOptions]="{exact:true}"><a routerLink="/profile">Profile</a></li>
+      <!-- Admin Nav Bar Link -->
+      <li *ngIf="authService.isAdmin()" [routerLinkActive]="['active']" [routerLinkActiveOptions]="{exact:true}" class="nav-item active">
+        <a class="nav-link" routerLink="/admin">Admin</a>
+      </li>
 
-        <li *ngIf="authService.loggedIn()" [routerLinkActive]="['active']" [routerLinkActiveOptions]="{exact:true}"><a routerLink="/reservation">Reservations</a></li>
+      <!-- Login Nav Bar Link -->
+      <li *ngIf="!authService.loggedIn()" [routerLinkActive]="['active']" [routerLinkActiveOptions]="{exact:true}" class="nav-item active">
+        <a class="nav-link" routerLink="/login">Login</a>
+      </li>
 
-        <li *ngIf="!authService.loggedIn()" [routerLinkActive]="['active']" [routerLinkActiveOptions]="{exact:true}"><a routerLink="/login">Login</a></li>
+      <!-- Register Nav Bar Link -->
+      <li *ngIf="!authService.loggedIn()" [routerLinkActive]="['active']" [routerLinkActiveOptions]="{exact:true}" class="nav-item active">
+        <a class="nav-link" routerLink="/register">Register</a>
+      </li>
 
-        <li *ngIf="!authService.loggedIn()" [routerLinkActive]="['active']" [routerLinkActiveOptions]="{exact:true}"><a routerLink="/register">Register</a></li>
+      <!-- Logout Nav Bar Link -->
+      <li *ngIf="authService.loggedIn()" [routerLinkActive]="['active']" [routerLinkActiveOptions]="{exact:true}" class="nav-item active">
+        <a class="nav-link" href="#" (click)="onLogoutClick()">Logout</a>
+      </li>
 
-        <li *ngIf="authService.isAdmin()" [routerLinkActive]="['active']" [routerLinkActiveOptions]="{exact:true}"><a routerLink="/admin">Admin</a></li>
-
-        <li *ngIf="authService.loggedIn()" [routerLinkActive]="['active']" [routerLinkActiveOptions]="{exact:true}"><a href="#" (click)="onLogoutClick()">Logout</a></li>
-
-
-      </ul>
-    </div><!--/.nav-collapse -->
+    </ul>
   </div>
 </nav>
+
