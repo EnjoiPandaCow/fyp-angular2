@@ -59,11 +59,22 @@ img {
 }
 
 .container {
-  margin-left: 0;
+  max-width: 1920px;
   padding-left: 0;
-  margin-right: 0;
-  padding-right: 0;
-  width: 0;
+
+}
+
+.newContainer {
+  width: 100%;
+  padding-right: 10%;
+  padding-left: 10%;
+  margin-right: auto;
+  margin-left: auto;
+}
+
+.contentContainer {
+  padding-left: 20%;
+  padding-right: 20%;
 }
 
 
