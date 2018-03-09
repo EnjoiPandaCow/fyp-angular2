@@ -1,87 +1,89 @@
-<h1 class="page-header">Reservations</h1>
+<div class="contentContainer">
+  <h1 class="page-header">Reservations</h1>
 
-<div class="row show-hide-message" *ngIf="message && newReservation">
-  <div [ngClass]="messageClass">
-    {{ message }}
-  </div>
-</div>
-
-<button type="button" name="button" class="btn btn-primary" *ngIf="!newReservation" (click)="newReservationForm()">Make Reservation</button>
-<button [disabled]="loadingReservations" type="button" name="button" class="btn btn-deafult" *ngIf="!newReservation" (click)="reloadReservations()"><span class="glyphicon glyphicon-repeat"></span>&nbsp;&nbsp;Refresh</button>
-
-<!-- New Reservation Form -->
-<form [formGroup]="form" name="reservationForm" (submit)="onReservationSubmit()" *ngIf="newReservation">
-
-  <!-- Facility Input -->
-  <div class="form-group">
-    <label for="facility">Facility</label>
-    <div [ngClass]="{'has-success': form.controls.facility.valid, 'has-error': form.controls.facility.dirty && form.controls.facility.errors}">
-      <input type="text" name="facility" class="form-control" placeholder="Facility" autocomplete="off" formControlName="facility" />
-      <ul class="help-block">
-        <li *ngIf="form.controls.facility.dirty && form.controls.facility.errors?.required">This field is required.</li>
-      </ul>
+  <div class="row show-hide-message" *ngIf="message && newReservation">
+    <div [ngClass]="messageClass">
+      {{ message }}
     </div>
   </div>
 
-  <!-- Date Input -->
-  <div class="form-group">
-    <label for="date">Date</label>
-    <div [ngClass]="{'has-success': form.controls.date.valid, 'has-error': form.controls.date.dirty && form.controls.date.errors}">
-      <input type="date" name="date" class="form-control" placeholder="Date" autocomplete="off" formControlName="date" />
-      <ul class="help-block">
-        <li *ngIf="form.controls.date.dirty && form.controls.date.errors?.required">This field is required.</li>
-      </ul>
+  <button type="button" name="button" class="btn btn-primary" *ngIf="!newReservation" (click)="newReservationForm()">Make Reservation</button>
+  <button [disabled]="loadingReservations" type="button" name="button" class="btn btn-deafult" *ngIf="!newReservation" (click)="reloadReservations()"><span class="glyphicon glyphicon-repeat"></span>&nbsp;&nbsp;Refresh</button>
+
+  <!-- New Reservation Form -->
+  <form [formGroup]="form" name="reservationForm" (submit)="onReservationSubmit()" *ngIf="newReservation">
+
+    <!-- Facility Input -->
+    <div class="form-group">
+      <label for="facility">Facility</label>
+      <div [ngClass]="{'has-success': form.controls.facility.valid, 'has-error': form.controls.facility.dirty && form.controls.facility.errors}">
+        <input type="text" name="facility" class="form-control" placeholder="Facility" autocomplete="off" formControlName="facility" />
+        <ul class="help-block">
+          <li *ngIf="form.controls.facility.dirty && form.controls.facility.errors?.required">This field is required.</li>
+        </ul>
+      </div>
+    </div>
+
+    <!-- Date Input -->
+    <div class="form-group">
+      <label for="date">Date</label>
+      <div [ngClass]="{'has-success': form.controls.date.valid, 'has-error': form.controls.date.dirty && form.controls.date.errors}">
+        <input type="date" name="date" class="form-control" placeholder="Date" autocomplete="off" formControlName="date" />
+        <ul class="help-block">
+          <li *ngIf="form.controls.date.dirty && form.controls.date.errors?.required">This field is required.</li>
+        </ul>
+      </div>
+    </div>
+
+    <!-- Start Time Input -->
+    <div class="form-group">
+      <label for="sTime">Start Time</label>
+      <div [ngClass]="{'has-success': form.controls.sTime.valid, 'has-error': form.controls.sTime.dirty && form.controls.sTime.errors}">
+        <input type="time" name="sTime" class="form-control" placeholder="Start Time" autocomplete="off" formControlName="sTime" />
+        <ul class="help-block">
+          <li *ngIf="form.controls.sTime.dirty && form.controls.sTime.errors?.required">This field is required.</li>
+        </ul>
+      </div>
+    </div>
+
+    <!-- End Time Input -->
+    <div class="form-group">
+      <label for="eTime">Finish Time</label>
+      <div [ngClass]="{'has-success': form.controls.eTime.valid, 'has-error': form.controls.eTime.dirty && form.controls.eTime.errors}">
+        <input type="time" name="eTime" class="form-control" placeholder="End Time" autocomplete="off" formControlName="eTime" />
+        <ul class="help-block">
+          <li *ngIf="form.controls.eTime.dirty && form.controls.eTime.errors?.required">This field is required.</li>
+        </ul>
+      </div>
+    </div>
+
+    <button [disabled]="processing"  type="button" name="button" (click)="goBack()" class="btn btn-warning">Go Back</button>
+    <button [disabled]="processing || !form.valid"  type="submit" name="button" class="btn btn-success">Submit</button>
+  </form>
+  <!-- New Reservation Form -->
+
+  <!-- Reservation Start -->
+  <div *ngIf="!newReservation">
+    <div class="panel" *ngFor="let reservation of reservationPosts">
+      <div class="panel-heading">
+        <h2 class="panel-title"><strong>{{ reservation.facility }}</strong></h2>
+      </div>
+      <div class="panel-body">
+        <p><strong>Date: </strong>{{ reservation.date | date:'dd / MM / yyyy' }}</p>
+        <p><strong>Start Time: </strong>{{ reservation.sTime }}</p>
+        <p><strong>Finish Time: </strong>{{ reservation.eTime }}</p>
+      </div>
+      <div class="panel-footer">
+        <strong>Posted By: </strong> {{ reservation.postedBy }}
+        <br>
+        <strong>Date: </strong> {{ reservation.postedOn | date:'dd / MM / yyyy' }}
+        <br>
+        <strong>Approved: </strong> {{ reservation.approved ? "Yes":"No" }}
+      </div>
+      <div class="panel-buttons">
+        <a [routerLink]="['/edit-reservation/', reservation._id]" *ngIf="username === reservation.postedBy || authService.isAdmin()"><button type="button" name="button" class="btn btn-sm btn-info">Edit</button></a>
+        <a [routerLink]="['/delete-reservation/', reservation._id]" *ngIf="username === reservation.postedBy || authService.isAdmin()"><button type="button" name="button" class="btn btn-sm btn-danger">Delete</button></a>
+      </div>
     </div>
   </div>
-
-  <!-- Start Time Input -->
-  <div class="form-group">
-    <label for="sTime">Start Time</label>
-    <div [ngClass]="{'has-success': form.controls.sTime.valid, 'has-error': form.controls.sTime.dirty && form.controls.sTime.errors}">
-      <input type="time" name="sTime" class="form-control" placeholder="Start Time" autocomplete="off" formControlName="sTime" />
-      <ul class="help-block">
-        <li *ngIf="form.controls.sTime.dirty && form.controls.sTime.errors?.required">This field is required.</li>
-      </ul>
-    </div>
-  </div>
-
-  <!-- End Time Input -->
-  <div class="form-group">
-    <label for="eTime">Finish Time</label>
-    <div [ngClass]="{'has-success': form.controls.eTime.valid, 'has-error': form.controls.eTime.dirty && form.controls.eTime.errors}">
-      <input type="time" name="eTime" class="form-control" placeholder="End Time" autocomplete="off" formControlName="eTime" />
-      <ul class="help-block">
-        <li *ngIf="form.controls.eTime.dirty && form.controls.eTime.errors?.required">This field is required.</li>
-      </ul>
-    </div>
-  </div>
-
-  <button [disabled]="processing"  type="button" name="button" (click)="goBack()" class="btn btn-warning">Go Back</button>
-  <button [disabled]="processing || !form.valid"  type="submit" name="button" class="btn btn-success">Submit</button>
-</form>
-<!-- New Reservation Form -->
-
-<!-- Reservation Start -->
-<div *ngIf="!newReservation">
-  <div class="panel" *ngFor="let reservation of reservationPosts">
-    <div class="panel-heading">
-      <h2 class="panel-title"><strong>{{ reservation.facility }}</strong></h2>
-    </div>
-    <div class="panel-body">
-      <p><strong>Date: </strong>{{ reservation.date | date:'dd / MM / yyyy' }}</p>
-      <p><strong>Start Time: </strong>{{ reservation.sTime }}</p>
-      <p><strong>Finish Time: </strong>{{ reservation.eTime }}</p>
-    </div>
-    <div class="panel-footer">
-      <strong>Posted By: </strong> {{ reservation.postedBy }}
-      <br>
-      <strong>Date: </strong> {{ reservation.postedOn | date:'dd / MM / yyyy' }}
-      <br>
-      <strong>Approved: </strong> {{ reservation.approved ? "Yes":"No" }}
-    </div>
-    <div class="panel-buttons">
-      <a [routerLink]="['/edit-reservation/', reservation._id]" *ngIf="username === reservation.postedBy || authService.isAdmin()"><button type="button" name="button" class="btn btn-sm btn-info">Edit</button></a>
-      <a [routerLink]="['/delete-reservation/', reservation._id]" *ngIf="username === reservation.postedBy || authService.isAdmin()"><button type="button" name="button" class="btn btn-sm btn-danger">Delete</button></a>
-    </div>
- </div>
 </div>
