@@ -1,5 +1,5 @@
 #stage {
-  background: url('../../../assets/images/home/cover.jpg');
+  background: url('/../../../assets/images/home/road.jpeg');
   background-size: cover;
   color: white;
   height: 100vh;
@@ -19,7 +19,6 @@
 #stage-caption h1 {
   color: white;
   font-weight: bold;
-  text-transform: uppercase;
 }
 
 .feature-content {
@@ -37,7 +36,7 @@
 }
 
 .feature-dark {
-  background: #262F36;
+  background: black;
   color: white;
 }
 
@@ -61,6 +60,14 @@
 
 .feature-content .btn {
   margin-top: 4%;
+}
+
+#benefits {
+  padding: 7rem;
+}
+
+.text-primary {
+  color: #333333 !important;
 }
 
 /* Media Queries */

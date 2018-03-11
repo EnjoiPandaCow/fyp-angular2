@@ -26,6 +26,7 @@ import {AdminGuard} from "./guards/admin.guard";
 import { EditUsersComponent } from './components/users/edit-users/edit-users.component';
 import { DeleteUsersComponent } from './components/users/delete-users/delete-users.component';
 import { FooterComponent } from './components/footer/footer.component';
+import { SmallFooterComponent } from './components/small-footer/small-footer.component';
 
 @NgModule({
   declarations: [
@@ -44,6 +45,7 @@ import { FooterComponent } from './components/footer/footer.component';
     EditUsersComponent,
     DeleteUsersComponent,
     FooterComponent,
+    SmallFooterComponent,
   ],
   imports: [
     BrowserModule,
