@@ -18,3 +18,18 @@ img {
   width: 11%;
   height: 11%
 }
+
+@media screen and (max-width: 360px) {
+  img {
+    width: 20%;
+    height: 20%
+  }
+}
+
+@media screen and (max-width: 600px) {
+  img {
+    width: 15%;
+    height: 15%
+  }
+}
+

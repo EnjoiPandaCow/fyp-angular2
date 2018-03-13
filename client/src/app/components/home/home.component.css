@@ -70,7 +70,6 @@
   color: #333333 !important;
 }
 
-
 /* The actual timeline (the vertical ruler) */
 .timeline {
   position: relative;
@@ -187,6 +186,8 @@
   margin-right: 10px;
 }
 
+
+
 /* Media Queries */
 @media screen and ( min-width: 991px ) {
   .feature-content .row {
@@ -252,9 +253,17 @@
     border-radius: 50%;
     z-index: 1;
   }
-
 }
 
+@media screen and (max-width: 360px) {
+  .right {
+    left: 28%;
+  }
+
+  .left {
+    left: 28%;
+  }
+}
 
 
 
