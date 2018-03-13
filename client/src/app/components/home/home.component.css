@@ -237,7 +237,7 @@
   }
 
   .timeline-margin {
-    margin-top: 5%
+    margin-top: 2rem;
   }
 
   /* The circles on the timeline */
@@ -252,6 +252,12 @@
     top: 15px;
     border-radius: 50%;
     z-index: 1;
+  }
+}
+
+@media screen and (max-width: 420px) {
+  #benefits {
+    padding: 3rem 1rem;
   }
 }
 
