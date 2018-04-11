@@ -8,6 +8,7 @@ const authentication = require('./routes/authentication')(router);
 const reservation    = require('./routes/reservation')(router);
 const bodyParser     = require('body-parser');
 const cors           = require('cors'); // Allows for cross origin
+const port           = process.env.PORT || 8080;
 
 // Database connection
 mongoose.Promise = global.Promise;
@@ -26,7 +27,7 @@ app.use(cors( {
 }));
 app.use(bodyParser.urlencoded({ extended: false}));
 app.use(bodyParser.json());
-app.use(express.static(__dirname + '/client/dist/')); // Providing access to the dist directory.
+app.use(express.static(__dirname + '/public')); // Providing access to the dist directory.
 app.use('/authentication', authentication);
 app.use('/reservations', reservation);
 
@@ -35,11 +36,11 @@ app.use('/reservations', reservation);
    By using the '*' no matter what route our users go to the will get that message.
  */
 app.get('*', (req, res) => {
-    res.sendFile(path.join(__dirname + '/client/dist/index.html'));
+    res.sendFile(path.join(__dirname + '/public/index.html'));
 });
 
 // Telling the server to listen on the port 8080.
-app.listen(8080, () => {
-    console.log('Listening on port 8080');
+app.listen(port, () => {
+    console.log('Listening on port ' + port);
 });
 
