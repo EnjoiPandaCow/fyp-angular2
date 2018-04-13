@@ -1,39 +1,39 @@
 {
-  "name": "Facilities Management System",
-  "short_name": "FMS",
+  "name": "Shyft",
+  "short_name": "Shyft",
   "icons" : [
     {
-      "src": "/src/images/icons/ic_launcher_36_36.png",
+      "src": "assets/images/icons/ic_launcher_36_36.png",
       "type": "image/png",
       "sizes": "36x36"
     },
     {
-      "src": "/src/images/icons/ic_launcher_48_48.png",
+      "src": "assets/images/icons/ic_launcher_48_48.png",
       "type": "image/png",
       "sizes": "48x48"
     },
     {
-      "src": "/src/images/icons/ic_launcher_72_72.png",
+      "src": "assets/images/icons/ic_launcher_72_72.png",
       "type": "image/png",
       "sizes": "72x72"
     },
     {
-      "src": "/src/images/icons/ic_launcher_96_96.png",
+      "src": "assets/images/icons/ic_launcher_96_96.png",
       "type": "image/png",
       "sizes": "96x96"
     },
     {
-      "src": "/src/images/icons/ic_launcher_144_144.png",
+      "src": "assets/images/icons/ic_launcher_144_144.png",
       "type": "image/png",
       "sizes": "144x144"
     },
     {
-      "src": "/src/images/icons/ic_launcher_192_192.png",
+      "src": "assets/images/icons/ic_launcher_192_192.png",
       "type": "image/png",
       "sizes": "192x192"
     },
     {
-      "src": "/src/images/icons/playstore-icon.png",
+      "src": "assets/images/icons/playstore-icon.png",
       "type": "image/png",
       "sizes": "512x512"
     }
@@ -41,9 +41,12 @@
   "start_url": "/",
   "scope": ".",
   "display": "standalone",
+  "orientation": "portrait-primary",
   "background_color": "#000",
   "theme_color": "#000",
-  "description" : "Facilities management application for Tombrack GAA",
+  "description" : "Shyft - The Peer to Peer Delivery Community",
   "dir": "ltr",
   "lang": "en-US"
 }
+
+
