@@ -1,9 +1,11 @@
 <nav class="navbar navbar-expand-lg navbar-light bg-light navbar-fixed-top">
   <a class="navbar-brand" href="/"><img src="../../../assets/images/logo/shyft_logo_transparent.png" alt="shyft.logo" height="45"></a>
-  <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#shyftNavbar" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
+  <button class="navbar-toggler" type="button" (click)="isCollapsed = !isCollapsed">
     <span class="navbar-toggler-icon"></span>
   </button>
-  <div class="collapse navbar-collapse" id="shyftNavbar">
+  <div (collapsed)="collapsed($event)"
+       (expanded)="expanded($event)"
+       [collapse]="isCollapsed" class="collapse navbar-collapse" id="shyftNavbar">
     <ul class="navbar-nav ml-auto">
 
       <!-- Profile Nav Bar Link -->
@@ -35,8 +37,6 @@
       <li *ngIf="authService.loggedIn()" [routerLinkActive]="['active']" [routerLinkActiveOptions]="{exact:true}" class="nav-item active">
         <a class="nav-link" href="#" (click)="onLogoutClick()">Logout</a>
       </li>
-
     </ul>
   </div>
 </nav>
-

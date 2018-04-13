@@ -27,6 +27,9 @@ import { EditUsersComponent } from './components/users/edit-users/edit-users.com
 import { DeleteUsersComponent } from './components/users/delete-users/delete-users.component';
 import { FooterComponent } from './components/footer/footer.component';
 import { SmallFooterComponent } from './components/small-footer/small-footer.component';
+import { ServiceWorkerModule } from '@angular/service-worker';
+import { environment } from '../environments/environment';
+import { CollapseModule} from "ngx-bootstrap";
 
 @NgModule({
   declarations: [
@@ -45,7 +48,7 @@ import { SmallFooterComponent } from './components/small-footer/small-footer.com
     EditUsersComponent,
     DeleteUsersComponent,
     FooterComponent,
-    SmallFooterComponent,
+    SmallFooterComponent
   ],
   imports: [
     BrowserModule,
@@ -53,7 +56,9 @@ import { SmallFooterComponent } from './components/small-footer/small-footer.com
     ReactiveFormsModule,
     FormsModule,
     AppRoutingModule,
-    FlashMessagesModule
+    FlashMessagesModule,
+    ServiceWorkerModule.register('/ngsw-worker.js', {enabled: environment.production}),
+    CollapseModule.forRoot()
   ],
   providers: [
     [AuthService, AuthGuard, NotAuthGuard, AdminGuard, ReservationService, DatePipe],
