@@ -3,9 +3,7 @@
   <button class="navbar-toggler" type="button" (click)="isCollapsed = !isCollapsed">
     <span class="navbar-toggler-icon"></span>
   </button>
-  <div (collapsed)="collapsed($event)"
-       (expanded)="expanded($event)"
-       [collapse]="isCollapsed" class="collapse navbar-collapse" id="shyftNavbar">
+  <div (collapsed)="collapsed($event)" (expanded)="expanded($event)" [collapse]="isCollapsed" class="collapse navbar-collapse" id="shyftNavbar">
     <ul class="navbar-nav ml-auto">
 
       <!-- Profile Nav Bar Link -->

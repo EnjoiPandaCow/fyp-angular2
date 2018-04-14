@@ -13,7 +13,7 @@ export class NavbarComponent implements OnInit {
 
   constructor( public authService: AuthService, private router: Router, private flashMessagesService: FlashMessagesService ) { }
 
-  isCollapsed: boolean = false;
+  isCollapsed: boolean = true;
 
   collapsed(event: any): void {
     console.log(event);

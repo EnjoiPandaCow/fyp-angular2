@@ -20,7 +20,6 @@ mongoose.connect(config.uri, (err) => {
     }
 });
 
-
 // Middleware
 app.use(cors( {
     origin: 'http://localhost:4200' // Allowing requests to be made from that URL.
