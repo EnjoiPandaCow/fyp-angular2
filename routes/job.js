@@ -64,6 +64,22 @@ module.exports = (router) => {
             }
         }
     });
+
+    router.get('/allJobs', (req, res) => {
+        Job.find({}, (err, jobs) => {
+            if (err) {
+                res.json({ success: false, message: err});
+            } else {
+                if (!jobs) {
+                    res.json({ success: false, message: 'No jobs found.'});
+                } else {
+                    res.json({ success: true, jobs: jobs});
+                }
+            }
+        }).sort({ '_id': -1 });
+    });
+
+
     return router;
 };
 
