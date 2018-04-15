@@ -6,6 +6,7 @@ const config         = require('./config/database'); // Importing database confi
 const path           = require('path');
 const authentication = require('./routes/authentication')(router);
 const reservation    = require('./routes/reservation')(router);
+const job            = require('./routes/job')(router);
 const bodyParser     = require('body-parser');
 const cors           = require('cors'); // Allows for cross origin
 const port           = process.env.PORT || 8080;
@@ -29,6 +30,7 @@ app.use(bodyParser.json());
 app.use(express.static(__dirname + '/public')); // Providing access to the dist directory.
 app.use('/authentication', authentication);
 app.use('/reservations', reservation);
+app.use('/jobs', job);
 
 /* Anytime user sends a request we are going to respond with something.
    In this case the home page.
