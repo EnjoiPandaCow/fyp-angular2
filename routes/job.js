@@ -79,6 +79,80 @@ module.exports = (router) => {
         }).sort({ '_id': -1 });
     });
 
+    router.get('/singleJob/:id', (req, res) => {
+        if (!req.params.id) {
+            res.json({ success: false, message: 'No job ID was provided.'});
+        } else {
+            Job.findOne({_id: req.params.id}, (err, job) => {
+                if (err) {
+                    res.json({ success: false, message: "Not a valid job ID." });
+                } else {
+                    if (!job) {
+                        res.json({ success: false, message: 'Job not found.'});
+                    } else {
+                        res.json({ success: true, job: job});
+                    }
+                }
+            });
+        }
+    });
+
+    router.put('/updateJob', (req, res) => {
+        // Checking if the job ID is in the request body.
+        if (!req.body._id) {
+            res.json({success: false, message: 'Job ID not provided.'});
+        } else {
+            Job.findOne({_id: req.body._id}, (err, job) => {
+                if (err) {
+                    res.json({success: false, message: 'Not a valid job ID.'});
+                } else {
+                    if (!job) {
+                        res.json({success: false, message: 'Job ID was not found.'});
+                    } else {
+                        job.title = req.body.title;
+                        job.size = req.body.size;
+                        job.pDate = req.body.pDate;
+                        job.pTime = req.body.pTime;
+                        job.pAddress = req.body.pAddress;
+                        job.dDate = req.body.dDate;
+                        job.dTime = req.body.dTime;
+                        job.dAddress = req.body.dAddress;
+                        job.save(err => {
+                            if (err) {
+                                res.json({success: false, message: err});
+                            } else {
+                                res.json({success: true, message: 'Job Updated'});
+                            }
+                        });
+                    }
+                }
+            });
+        }
+    });
+
+    router.delete('/deleteJob/:id', (req, res) => {
+        if (!req.params.id) {
+            res.json({success: false, message: 'No job ID provided.'});
+        } else {
+            Job.findOne({_id: req.params.id}, (err, job) => {
+                if (err) {
+                    res.json({success: false, message: 'Not a valid job ID.'});
+                } else {
+                    if (!job) {
+                        res.json({success: false, message: 'Job not found.'});
+                    } else {
+                        job.remove((err) => {
+                            if (err) {
+                                res.json({success: false, message: err});
+                            } else {
+                                res.json({success: true, message: 'Job Deleted.'});
+                            }
+                        })
+                    }
+                }
+            });
+        }
+    });
 
     return router;
 };
