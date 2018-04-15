@@ -196,7 +196,6 @@ const userSchema = new Schema({
     username: {type: String, required: true, unique: true, lowercase: false, validate: usernameValidators},
     fName: {type: String, required: true, validate: fNameValidators},
     lName: {type: String, required: true, validate: lNameValidators},
-    role: {type: String, required: true},
     mobile: {type: String, required: true, validate: mobileValidators},
     admin: {type: Boolean, require: true, default: false},
     password: {type: String, required: true, }

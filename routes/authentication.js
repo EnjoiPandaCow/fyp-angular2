@@ -22,72 +22,82 @@ module.exports = (router) => {
                         if (!req.body.lName) {
                             res.json({success: false, message: 'You must provide a last name.'});
                         } else {
-                            if (!req.body.role) {
-                                res.json({success: false, message: 'You must provide a role.'});
+                            if (!req.body.mobile) {
+                                res.json({success: false, message: 'You must provide a mobile phone number.'});
                             } else {
-                                if (!req.body.mobile) {
-                                    res.json({success: false, message: 'You must provide a mobile phone number.'});
-                                } else {
-                                    // Creating new user.
-                                    let user = new User({
-                                        email: req.body.email.toLowerCase(),
-                                        username: req.body.username,
-                                        password: req.body.password,
-                                        fName: req.body.fName,
-                                        lName: req.body.lName,
-                                        role: req.body.role,
-                                        mobile: req.body.mobile
-                                    });
-                                    // Saving user and controlling errors.
-                                    user.save((err) => {
-                                        if (err) {
-                                            if (err.code === 11000) {
-                                                res.json({
-                                                    success: false,
-                                                    message: 'Username or e-mail already exists.'
-                                                });
-                                            } else {
-                                                // If validation is wrong on the register fields.
-                                                if (err.errors) {
-                                                    if (err.errors.email) {
-                                                        res.json({success: false, message: err.errors.email.message});
+                                // Creating new user.
+                                let user = new User({
+                                    email: req.body.email.toLowerCase(),
+                                    username: req.body.username,
+                                    password: req.body.password,
+                                    fName: req.body.fName,
+                                    lName: req.body.lName,
+                                    mobile: req.body.mobile
+                                });
+                                // Saving user and controlling errors.
+                                user.save((err) => {
+                                    if (err) {
+                                        if (err.code === 11000) {
+                                            res.json({
+                                                success: false,
+                                                message: 'Username or e-mail already exists.'
+                                            });
+                                        } else {
+                                            // If validation is wrong on the register fields.
+                                            if (err.errors) {
+                                                if (err.errors.email) {
+                                                    res.json({success: false, message: err.errors.email.message});
+                                                } else {
+                                                    if (err.errors.username) {
+                                                        res.json({
+                                                            success: false,
+                                                            message: err.errors.username.message
+                                                        });
                                                     } else {
-                                                        if (err.errors.username) {
-                                                            res.json({success: false, message: err.errors.username.message});
+                                                        if (err.errors.password) {
+                                                            res.json({
+                                                                success: false,
+                                                                message: err.errors.password.message
+                                                            });
                                                         } else {
-                                                            if (err.errors.password) {
-                                                                res.json({success: false, message: err.errors.password.message});
+                                                            if (err.errors.fName) {
+                                                                res.json({
+                                                                    success: false,
+                                                                    message: err.errors.fName.message
+                                                                });
                                                             } else {
-                                                                if (err.errors.fName) {
-                                                                    res.json({success: false, message: err.errors.fName.message});
+                                                                if (err.errors.lName) {
+                                                                    res.json({
+                                                                        success: false,
+                                                                        message: err.errors.lName.message
+                                                                    });
                                                                 } else {
-                                                                    if (err.errors.lName) {
-                                                                        res.json({success: false, message: err.errors.lName.message});
+                                                                    if (err.errors.mobile) {
+                                                                        res.json({
+                                                                            success: false,
+                                                                            message: err.errors.mobile.message
+                                                                        });
                                                                     } else {
-                                                                        if (err.errors.mobile) {
-                                                                            res.json({success: false, message: err.errors.mobile.message});
-                                                                        } else {
-                                                                            res.json({success: false, message: err});
-                                                                        }
+                                                                        res.json({success: false, message: err});
                                                                     }
                                                                 }
-
                                                             }
+
                                                         }
                                                     }
-                                                } else {
-                                                    res.json({
-                                                        success: false,
-                                                        message: 'Could not save user. Error:',
-                                                        err
-                                                    });
                                                 }
+                                            } else {
+                                                res.json({
+                                                    success: false,
+                                                    message: 'Could not save user. Error:',
+                                                    err
+                                                });
                                             }
-                                        } else {
-                                            res.json({success: true, message: 'Account Registered!'})
                                         }
-                                    });
-                                }
+                                    } else {
+                                        res.json({success: true, message: 'Account Registered!'})
+                                    }
+                                });
                             }
                         }
                     }
@@ -167,7 +177,6 @@ module.exports = (router) => {
                         res.json({success: false, message: 'User ID was not found.'});
                     } else {
                         user.username = req.body.username;
-                        user.role = req.body.role;
                         user.email = req.body.email;
                         user.mobile = req.body.mobile;
                         user.admin = req.body.admin;
@@ -277,7 +286,7 @@ module.exports = (router) => {
     });
 
     router.get('/profile', (req, res) => {
-       User.findOne({ _id: req.decoded.userId }).select('username email fName lName role mobile').exec((err, user) => {
+       User.findOne({ _id: req.decoded.userId }).select('username email fName lName mobile').exec((err, user) => {
           if (err) {
               res.json({ success: false, message: err});
           } else {

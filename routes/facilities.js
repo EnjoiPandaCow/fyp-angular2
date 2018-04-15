@@ -1,1 +1,0 @@
-const Facilitie = require ('../models/facilities');

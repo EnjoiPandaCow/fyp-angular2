@@ -74,17 +74,6 @@
       </div>
     </div>
 
-    <!-- Role Input -->
-    <div class="form-group">
-      <label for="role">Role</label>
-      <div [ngClass]="{'has-error': (form.controls.role.errors && form.controls.role.dirty), 'has-success' : !form.controls.role.errors}">
-        <input type="text" name="role" class="form-control" autocomplete="off" placeholder="Role" formControlName="role" />
-        <ul class="help-block">
-          <li *ngIf="form.controls.role.errors?.required && form.controls.role.dirty">This field is required</li>
-        </ul>
-      </div>
-    </div>
-
     <!-- Mobile Input -->
     <div class="form-group">
       <label for="mobile">Mobile Phone Number</label>
