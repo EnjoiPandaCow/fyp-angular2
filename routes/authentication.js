@@ -268,22 +268,22 @@ module.exports = (router) => {
     });
 
     // // Middleware that grabs the token from the header
-    // router.use((req, res, next) => {
-    //     const token = req.headers['authorization'];
-    //     //const admin = req.headers['admin'];
-    //     if (!token) {
-    //         res.json({success: false, message: 'No token provided'});
-    //     } else {
-    //         jwt.verify(token, config.secret, (err, decoded) => {
-    //            if (err) {
-    //                res.json({ success: false, message: 'Token invalid: ' + err});
-    //            } else {
-    //                req.decoded = decoded;
-    //                next();
-    //            }
-    //         });
-    //     }
-    // });
+    router.use((req, res, next) => {
+        const token = req.headers['authorization'];
+        //const admin = req.headers['admin'];
+        if (!token) {
+            res.json({success: false, message: 'No token provided'});
+        } else {
+            jwt.verify(token, config.secret, (err, decoded) => {
+               if (err) {
+                   res.json({ success: false, message: 'Token invalid: ' + err});
+               } else {
+                   req.decoded = decoded;
+                   next();
+               }
+            });
+        }
+    });
 
     router.get('/profile', (req, res) => {
        User.findOne({ _id: req.decoded.userId }).select('username email fName lName mobile').exec((err, user) => {

@@ -31,6 +31,7 @@ import { SmallFooterComponent } from './components/small-footer/small-footer.com
 import { ServiceWorkerModule } from '@angular/service-worker';
 import { environment } from '../environments/environment';
 import { CollapseModule} from "ngx-bootstrap";
+import { JobComponent } from './components/job/job.component';
 
 @NgModule({
   declarations: [
@@ -49,7 +50,8 @@ import { CollapseModule} from "ngx-bootstrap";
     EditUsersComponent,
     DeleteUsersComponent,
     FooterComponent,
-    SmallFooterComponent
+    SmallFooterComponent,
+    JobComponent
   ],
   imports: [
     BrowserModule,

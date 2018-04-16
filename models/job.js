@@ -21,6 +21,7 @@ const dateValidators = [
 const jobSchema = new Schema({
 
     title: {type: String, required: true},
+    description: {type: String, required: true},
     size: {type: String, required: true},
     pDate: {type: Date, required: true, dateValidators},
     pTime: {type: String, required: true},

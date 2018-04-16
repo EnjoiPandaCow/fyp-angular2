@@ -30,7 +30,7 @@ export class ReservationComponent implements OnInit {
       date: ['', Validators.compose([Validators.required])],
       sTime: ['', Validators.compose([Validators.required])],
       eTime: ['', Validators.compose([Validators.required])]
-    })
+    });
   }
 
   enableNewReservationForm() {
@@ -84,7 +84,6 @@ export class ReservationComponent implements OnInit {
           this.message = false;
           this.form.reset();
           this.enableNewReservationForm();
-          console.log()
         }, 2000);
       }
     });
@@ -97,7 +96,7 @@ export class ReservationComponent implements OnInit {
   getAllReservations () {
     this.reservationService.getAllReservations().subscribe(data => {
       this.reservationPosts = data.reservations;
-    })
+    });
   }
 
   reloadReservations() {

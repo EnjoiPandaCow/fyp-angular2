@@ -8,7 +8,6 @@
   </div>
 
   <button type="button" name="button" class="btn btn-primary" *ngIf="!newReservation" (click)="newReservationForm()">Make Reservation</button>
-  <button [disabled]="loadingReservations" type="button" name="button" class="btn btn-deafult" *ngIf="!newReservation" (click)="reloadReservations()"><span class="glyphicon glyphicon-repeat"></span>&nbsp;&nbsp;Refresh</button>
 
   <!-- New Reservation Form -->
   <form [formGroup]="form" name="reservationForm" (submit)="onReservationSubmit()" *ngIf="newReservation">
@@ -62,29 +61,60 @@
   </form>
   <!-- New Reservation Form -->
 
-  <!-- Reservation Start -->
-  <div *ngIf="!newReservation">
-    <div class="panel" *ngFor="let reservation of reservationPosts">
-      <div class="panel-heading">
-        <h2 class="panel-title"><strong>{{ reservation.facility }}</strong></h2>
-      </div>
-      <div class="panel-body">
-        <p><strong>Date: </strong>{{ reservation.date | date:'dd / MM / yyyy' }}</p>
-        <p><strong>Start Time: </strong>{{ reservation.sTime }}</p>
-        <p><strong>Finish Time: </strong>{{ reservation.eTime }}</p>
-      </div>
-      <div class="panel-footer">
-        <strong>Posted By: </strong> {{ reservation.postedBy }}
-        <br>
-        <strong>Date: </strong> {{ reservation.postedOn | date:'dd / MM / yyyy' }}
-        <br>
-        <strong>Approved: </strong> {{ reservation.approved ? "Yes":"No" }}
-      </div>
-      <div class="panel-buttons">
-        <a [routerLink]="['/edit-reservation/', reservation._id]" *ngIf="username === reservation.postedBy || authService.isAdmin()"><button type="button" name="button" class="btn btn-sm btn-info">Edit</button></a>
-        <a [routerLink]="['/delete-reservation/', reservation._id]" *ngIf="username === reservation.postedBy || authService.isAdmin()"><button type="button" name="button" class="btn btn-sm btn-danger">Delete</button></a>
+  <!--&lt;!&ndash; Reservation Start &ndash;&gt;-->
+  <!--<div *ngIf="!newReservation">-->
+    <!--<div class="panel" *ngFor="let reservation of reservationPosts">-->
+      <!--<div class="panel-heading">-->
+        <!--<h2 class="panel-title"><strong>{{ reservation.facility }}</strong></h2>-->
+      <!--</div>-->
+      <!--<div class="panel-body">-->
+        <!--<p><strong>Date: </strong>{{ reservation.date | date:'dd / MM / yyyy' }}</p>-->
+        <!--<p><strong>Start Time: </strong>{{ reservation.sTime }}</p>-->
+        <!--<p><strong>Finish Time: </strong>{{ reservation.eTime }}</p>-->
+      <!--</div>-->
+      <!--<div class="panel-footer">-->
+        <!--<strong>Posted By: </strong> {{ reservation.postedBy }}-->
+        <!--<br>-->
+        <!--<strong>Date: </strong> {{ reservation.postedOn | date:'dd / MM / yyyy' }}-->
+        <!--<br>-->
+        <!--<strong>Approved: </strong> {{ reservation.approved ? "Yes":"No" }}-->
+      <!--</div>-->
+      <!--<div class="panel-buttons">-->
+        <!--<a [routerLink]="['/edit-reservation/', reservation._id]" *ngIf="username === reservation.postedBy || authService.isAdmin()"><button type="button" name="button" class="btn btn-sm btn-info">Edit</button></a>-->
+        <!--<a [routerLink]="['/delete-reservation/', reservation._id]" *ngIf="username === reservation.postedBy || authService.isAdmin()"><button type="button" name="button" class="btn btn-sm btn-danger">Delete</button></a>-->
+      <!--</div>-->
+    <!--</div>-->
+  <!--</div>-->
+  <br>
+  <br>
+
+  <div *ngIf="!newReservation" class="row">
+    <div class="col-md-4" *ngFor="let reservation of reservationPosts">
+      <div class="card mb-4 box-shadow">
+        <img class="card-img-top" src="../../../assets/images/placeholders/placeholder.png" alt="Card image cap">
+        <div class="card-body">
+          <p class="card-text"><strong>{{ reservation.facility }}</strong></p>
+          <small class="text-muted">Cork - {{ reservation.postedOn | date:'dd / MM / yyyy' }}</small>
+          <br>
+          <br>
+          <div class="d-flex justify-content-between align-items-center">
+            <div class="btn-group">
+              <a [routerLink]="['/edit-reservation/', reservation._id]" *ngIf="username === reservation.postedBy || authService.isAdmin()"><button type="button" class="btn btn-sm btn-outline-secondary">View</button></a>
+              <a [routerLink]="['/delete-reservation/', reservation._id]" *ngIf="username === reservation.postedBy || authService.isAdmin()"><button type="button" class="btn btn-sm btn-outline-secondary">Edit</button></a>
+            </div>
+            <small class="text-muted">{{ reservation.postedBy }}</small>
+          </div>
+        </div>
       </div>
     </div>
   </div>
+
+
+
+
+
+
+
+
 </div>
 

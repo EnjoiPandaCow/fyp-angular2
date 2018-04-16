@@ -11,9 +11,9 @@
         <a class="nav-link" routerLink="/profile">Profile</a>
       </li>
 
-      <!-- Reservations Nav Bar Link -->
+      <!-- Jobs Nav Bar Link -->
       <li *ngIf="authService.loggedIn()" [routerLinkActive]="['active']" [routerLinkActiveOptions]="{exact:true}" class="nav-item active">
-        <a class="nav-link" routerLink="/reservation">Reservations</a>
+        <a class="nav-link" routerLink="/job">Jobs</a>
       </li>
 
       <!-- Admin Nav Bar Link -->
