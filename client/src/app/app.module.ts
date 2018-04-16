@@ -11,6 +11,7 @@ import { DashboardComponent } from './components/dashboard/dashboard.component';
 import { RegisterComponent } from './components/register/register.component';
 import { AuthService} from "./services/auth.service";
 import { ReservationService} from "./services/reservation.service";
+import { JobService} from "./services/job.service";
 import { LoginComponent } from './components/login/login.component';
 import { ProfileComponent } from './components/profile/profile.component';
 import { FlashMessagesModule, FlashMessagesService} from "angular2-flash-messages";
@@ -61,7 +62,7 @@ import { CollapseModule} from "ngx-bootstrap";
     CollapseModule.forRoot()
   ],
   providers: [
-    [AuthService, AuthGuard, NotAuthGuard, AdminGuard, ReservationService, DatePipe],
+    [AuthService, AuthGuard, NotAuthGuard, AdminGuard, ReservationService, JobService, DatePipe],
     [FlashMessagesService]
   ],
   bootstrap: [AppComponent]

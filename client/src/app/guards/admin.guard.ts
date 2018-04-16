@@ -13,7 +13,7 @@ export class AdminGuard implements CanActivate {
     if(this.authService.loggedIn() && this.authService.isAdmin()) {
       return true;
     } else {
-      this.redirectUrl = state.url; // When user comes to hte route initially we save it.
+      this.redirectUrl = state.url; // When user comes to the route initially we save it.
       this.router.navigate(['/home']);
       return false;
     }

@@ -28,7 +28,8 @@ const jobSchema = new Schema({
     dDate: {type: Date, required: true, dateValidators},
     dTime: {type: String, required: true},
     dAddress: {type: String, required: true},
-    postedOn: {type: Date, default: Date.now()}
+    postedOn: {type: Date, default: Date.now()},
+    postedBy: {type: String}
 
 });
 
