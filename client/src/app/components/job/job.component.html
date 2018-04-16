@@ -38,12 +38,18 @@
     <div class="form-group">
       <label for="size">Size</label>
       <div [ngClass]="{'has-success': form.controls.size.valid, 'has-error': form.controls.size.dirty && form.controls.size.errors}">
-        <input type="text" name="size" class="form-control" placeholder="Size" autocomplete="off" formControlName="size" />
+        <select type="text" name="size" class="form-control" autocomplete="off" formControlName="size">
+          <option value="volvo">Fits in a Shoebox</option>
+          <option value="saab">Fits in the Front Seat</option>
+          <option value="opel">Fits in the Back Seat</option>
+          <option value="audi">Fits in the Boot</option>
+        </select>
         <ul class="help-block">
           <li *ngIf="form.controls.size.dirty && form.controls.size.errors?.required">This field is required.</li>
         </ul>
       </div>
     </div>
+
 
     <!-- Pick Up Date Input -->
     <div class="form-group">
@@ -113,6 +119,7 @@
 
     <button [disabled]="processing"  type="button" name="button" (click)="goBack()" class="btn btn-warning">Go Back</button>
     <button [disabled]="processing || !form.valid"  type="submit" name="button" class="btn btn-success">Submit</button>
+
   </form>
   <!-- New Job Form -->
 

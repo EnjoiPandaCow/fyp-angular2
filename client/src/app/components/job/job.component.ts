@@ -20,6 +20,12 @@ export class JobComponent implements OnInit {
   processing = false;
   jobPosts;
 
+
+  public size = [
+    {value: 'big', display: 'Big'},
+    {value: 'small', display:'Small'}
+  ];
+
   constructor( private formBuilder: FormBuilder, private authService: AuthService, private jobService: JobService) {
     this.createNewJobForm();
   }
@@ -127,5 +133,4 @@ export class JobComponent implements OnInit {
     });
     this.getAllJobs();
   }
-
 }
