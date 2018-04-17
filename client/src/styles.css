@@ -55,6 +55,13 @@ img {
   padding-right: 20%;
 }
 
+@media screen and (max-width: 600px) {
+  .contentContainer {
+    padding-left: 10%;
+    padding-right: 10%;
+  }
+}
+
 
 
 

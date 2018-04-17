@@ -2,8 +2,6 @@ import { Component, OnInit, ElementRef, NgZone,ViewChild } from '@angular/core';
 import { FormControl, FormGroup, FormBuilder, Validators } from "@angular/forms";
 import { AuthService } from "../../services/auth.service";
 import { JobService } from "../../services/job.service";
-import {} from 'googlemaps';
-import { MapsAPILoader} from "@agm/core";
 
 @Component({
   selector: 'app-job',
@@ -15,21 +13,15 @@ export class JobComponent implements OnInit {
   messageClass;
   message;
   newJob = false;
-  loadingJobs = false;
   form;
   username;
   processing = false;
   jobPosts;
 
-  public latitude: number;
-  public longitude: number;
-  public searchControl: FormControl;
-  public zoom: number;
-
   @ViewChild("search")
   public searchElementRef: ElementRef;
 
-  constructor( private formBuilder: FormBuilder, private authService: AuthService, private jobService: JobService, private mapsAPILoader: MapsAPILoader, private ngZone: NgZone) {
+  constructor( private formBuilder: FormBuilder, private authService: AuthService, private jobService: JobService) {
     this.createNewJobForm();
   }
 
@@ -119,15 +111,6 @@ export class JobComponent implements OnInit {
       this.jobPosts = data.jobs;
     });
   }
-
-  reloadJobs() {
-    this.loadingJobs = true;
-    this.getAllJobs();
-    setTimeout(() => {
-      this.loadingJobs = false;
-    }, 4000);
-  }
-
 
   ngOnInit() {
     // When the component is initialized we get the users user name and assign it to a variable.

@@ -39,10 +39,10 @@
       <label for="size">Size</label>
       <div [ngClass]="{'has-success': form.controls.size.valid, 'has-error': form.controls.size.dirty && form.controls.size.errors}">
         <select type="text" name="size" class="form-control" autocomplete="off" formControlName="size">
-          <option value="volvo">Fits in a Shoebox</option>
-          <option value="saab">Fits in the Front Seat</option>
-          <option value="opel">Fits in the Back Seat</option>
-          <option value="audi">Fits in the Boot</option>
+          <option value="Fits in a Shoebox" selected="selected">Fits in a Shoebox</option>
+          <option value="Fits in the Front Seat">Fits in the Front Seat</option>
+          <option value="Fits in the Back Seat">Fits in the Back Seat</option>
+          <option value="Fits in the Boo">Fits in the Boot</option>
         </select>
         <ul class="help-block">
           <li *ngIf="form.controls.size.dirty && form.controls.size.errors?.required">This field is required.</li>
@@ -50,25 +50,31 @@
       </div>
     </div>
 
-    <!-- Pick Up Date Input -->
-    <div class="form-group">
-      <label for="pDate">Pick Up Date</label>
-      <div [ngClass]="{'has-success': form.controls.pDate.valid, 'has-error': form.controls.pDate.dirty && form.controls.pDate.errors}">
-        <input type="date" name="pDate" class="form-control" placeholder="Pick Up Date" autocomplete="off" formControlName="pDate" />
-        <ul class="help-block">
-          <li *ngIf="form.controls.pDate.dirty && form.controls.pDate.errors?.required">This field is required.</li>
-        </ul>
+    <div class="row">
+      <div class="col-md-6">
+        <!-- Pick Up Date Input -->
+        <div class="form-group">
+          <label for="pDate">Pick Up Date</label>
+          <div [ngClass]="{'has-success': form.controls.pDate.valid, 'has-error': form.controls.pDate.dirty && form.controls.pDate.errors}">
+            <input type="date" name="pDate" class="form-control" placeholder="Pick Up Date" autocomplete="off" formControlName="pDate" />
+            <ul class="help-block">
+              <li *ngIf="form.controls.pDate.dirty && form.controls.pDate.errors?.required">This field is required.</li>
+            </ul>
+          </div>
+        </div>
       </div>
-    </div>
 
-    <!-- Pick Up Time Input -->
-    <div class="form-group">
-      <label for="pTime">Pick Up Time</label>
-      <div [ngClass]="{'has-success': form.controls.pTime.valid, 'has-error': form.controls.pTime.dirty && form.controls.pTime.errors}">
-        <input type="time" name="pTime" class="form-control" placeholder="Pick Up Time" autocomplete="off" formControlName="pTime" />
-        <ul class="help-block">
-          <li *ngIf="form.controls.pTime.dirty && form.controls.pTime.errors?.required">This field is required.</li>
-        </ul>
+      <div class="col-md-6">
+        <!-- Pick Up Time Input -->
+        <div class="form-group">
+          <label for="pTime">Pick Up Time</label>
+          <div [ngClass]="{'has-success': form.controls.pTime.valid, 'has-error': form.controls.pTime.dirty && form.controls.pTime.errors}">
+            <input type="time" name="pTime" class="form-control" placeholder="Pick Up Time" autocomplete="off" formControlName="pTime" />
+            <ul class="help-block">
+              <li *ngIf="form.controls.pTime.dirty && form.controls.pTime.errors?.required">This field is required.</li>
+            </ul>
+          </div>
+        </div>
       </div>
     </div>
 
@@ -83,25 +89,30 @@
       </div>
     </div>
 
-    <!-- Drop Off Date Input -->
-    <div class="form-group">
-      <label for="dDate">Drop Off Date</label>
-      <div [ngClass]="{'has-success': form.controls.dDate.valid, 'has-error': form.controls.dDate.dirty && form.controls.dDate.errors}">
-        <input type="date" name="dDate" class="form-control" placeholder="Drop Off Date" autocomplete="off" formControlName="dDate" />
-        <ul class="help-block">
-          <li *ngIf="form.controls.dDate.dirty && form.controls.dDate.errors?.required">This field is required.</li>
-        </ul>
+    <div class="row">
+      <div class="col-md-6">
+        <div class="form-group">
+          <label for="dDate">Drop Off Date</label>
+          <div [ngClass]="{'has-success': form.controls.dDate.valid, 'has-error': form.controls.dDate.dirty && form.controls.dDate.errors}">
+            <input type="date" name="dDate" class="form-control" placeholder="Drop Off Date" autocomplete="off" formControlName="dDate" />
+            <ul class="help-block">
+              <li *ngIf="form.controls.dDate.dirty && form.controls.dDate.errors?.required">This field is required.</li>
+            </ul>
+          </div>
+        </div>
       </div>
-    </div>
 
-    <!-- Drop Off Time Input -->
-    <div class="form-group">
-      <label for="dTime">Drop Off Time</label>
-      <div [ngClass]="{'has-success': form.controls.dTime.valid, 'has-error': form.controls.dTime.dirty && form.controls.dTime.errors}">
-        <input type="time" name="dTime" class="form-control" placeholder="Drop Off Time" autocomplete="off" formControlName="dTime" />
-        <ul class="help-block">
-          <li *ngIf="form.controls.dTime.dirty && form.controls.dTime.errors?.required">This field is required.</li>
-        </ul>
+      <div class="col-md-6">
+        <!-- Drop Off Time Input -->
+        <div class="form-group">
+          <label for="dTime">Drop Off Time</label>
+          <div [ngClass]="{'has-success': form.controls.dTime.valid, 'has-error': form.controls.dTime.dirty && form.controls.dTime.errors}">
+            <input type="time" name="dTime" class="form-control" placeholder="Drop Off Time" autocomplete="off" formControlName="dTime" />
+            <ul class="help-block">
+              <li *ngIf="form.controls.dTime.dirty && form.controls.dTime.errors?.required">This field is required.</li>
+            </ul>
+          </div>
+        </div>
       </div>
     </div>
 
@@ -116,7 +127,6 @@
       </div>
     </div>
 
-    <button [disabled]="processing"  type="button" name="button" (click)="goBack()" class="btn btn-warning">Go Back</button>
     <button [disabled]="processing || !form.valid"  type="submit" name="button" class="btn btn-success">Submit</button>
 
   </form>
@@ -128,7 +138,7 @@
   <div *ngIf="!newJob" class="row">
     <div class="col-md-4" *ngFor="let job of jobPosts">
       <div class="card mb-4 box-shadow">
-        <img class="card-img-top" src="../../../assets/images/placeholders/placeholder.png" alt="Card image cap">
+        <img class="card-img-top" src="../../../assets/images/home/road.jpeg" alt="Card image cap">
         <div class="card-body">
           <p class="card-text"><strong>{{ job.title }}</strong></p>
           <small class="text-muted">{{job.pAddress}} - {{ job.postedOn | date:'dd / MM / yyyy' }}</small>
@@ -136,7 +146,7 @@
           <br>
           <div class="d-flex justify-content-between align-items-center">
             <div class="btn-group">
-              <button type="button" class="btn btn-sm btn-outline-secondary">View</button>
+              <a [routerLink]="['/view-job/', job._id]"><button type="button" class="btn btn-sm btn-outline-secondary">View</button></a>
               <button type="button" class="btn btn-sm btn-outline-secondary">Edit</button>
             </div>
             <small class="text-muted">{{ job.postedBy }}</small>

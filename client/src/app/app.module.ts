@@ -33,6 +33,7 @@ import { environment } from '../environments/environment';
 import { CollapseModule} from "ngx-bootstrap";
 import { JobComponent } from './components/job/job.component';
 import { AgmCoreModule} from "@agm/core";
+import { ViewJobComponent } from './components/job/view-job/view-job.component';
 
 @NgModule({
   declarations: [
@@ -52,7 +53,8 @@ import { AgmCoreModule} from "@agm/core";
     DeleteUsersComponent,
     FooterComponent,
     SmallFooterComponent,
-    JobComponent
+    JobComponent,
+    ViewJobComponent
   ],
   imports: [
     BrowserModule,
@@ -63,10 +65,6 @@ import { AgmCoreModule} from "@agm/core";
     FlashMessagesModule,
     ServiceWorkerModule.register('/ngsw-worker.js', {enabled: environment.production}),
     CollapseModule.forRoot(),
-    AgmCoreModule.forRoot({
-      apiKey: "AIzaSyCeMkdH330zZFmR4jLFO8ch3JFYFXvwJBI",
-      libraries: ["places"]
-    })
   ],
   providers: [
     [AuthService, AuthGuard, NotAuthGuard, AdminGuard, ReservationService, JobService, DatePipe],

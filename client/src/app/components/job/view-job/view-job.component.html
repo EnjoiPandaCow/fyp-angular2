@@ -1,0 +1,47 @@
+<div class="contentContainer" xmlns="http://www.w3.org/1999/html">
+  <br>
+  <br>
+  <h1 class="page-header">{{job.title}}</h1>
+  <br>
+  <div class="col-md-12">
+    <div class="card mb-4 box-shadow">
+      <img class="card-img-top" src="../../../../assets/images/placeholders/placeholder.png" alt="Card image cap">
+      <div class="card-body">
+        <br>
+        <div class="row">
+          <div class="col-md-1"></div>
+          <div class="col-md-3">
+            <h2>Pick Up</h2>
+            <p><i class="far fa-calendar-alt"></i> {{ job.pDate | date:'dd / MM / yyyy' }}</p>
+            <p><i class="far fa-clock"></i> {{job.pTime}}</p>
+            <p><i class="fas fa-map-marker"></i> {{job.pAddress}}</p>
+          </div>
+          <div class="col-md-1"></div>
+          <div class="col-md-3">
+            <h2>Drop Off</h2>
+            <p><i class="far fa-calendar-alt"></i> {{ job.dDate | date:'dd / MM / yyyy' }}</p>
+            <p><i class="far fa-clock"></i> {{job.dTime}}</p>
+            <p><i class="fas fa-map-marker"></i> {{job.dAddress}}</p>
+          </div>
+          <div class="col-md-1"></div>
+          <div class="col-md-3">
+            <h2>Details</h2>
+            <p><i class="fas fa-box"></i>  {{job.size}}</p>
+            <p><i class="far fa-user"></i> {{job.postedBy}}</p>
+            <p><i class="far fa-calendar"></i> {{job.postedOn | date:'dd / MM / yyyy' }}</p>
+          </div>
+          <div class="col-md-1"></div>
+        </div>
+        <hr>
+        <br>
+        <div class="row">
+          <div class="col-md-1"></div>
+          <div class="col-md-5">
+            <h2>Description</h2>
+            <p>{{job.description}}</p>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
