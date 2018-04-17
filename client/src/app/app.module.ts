@@ -32,6 +32,7 @@ import { ServiceWorkerModule } from '@angular/service-worker';
 import { environment } from '../environments/environment';
 import { CollapseModule} from "ngx-bootstrap";
 import { JobComponent } from './components/job/job.component';
+import { AgmCoreModule} from "@agm/core";
 
 @NgModule({
   declarations: [
@@ -61,7 +62,11 @@ import { JobComponent } from './components/job/job.component';
     AppRoutingModule,
     FlashMessagesModule,
     ServiceWorkerModule.register('/ngsw-worker.js', {enabled: environment.production}),
-    CollapseModule.forRoot()
+    CollapseModule.forRoot(),
+    AgmCoreModule.forRoot({
+      apiKey: "AIzaSyCeMkdH330zZFmR4jLFO8ch3JFYFXvwJBI",
+      libraries: ["places"]
+    })
   ],
   providers: [
     [AuthService, AuthGuard, NotAuthGuard, AdminGuard, ReservationService, JobService, DatePipe],

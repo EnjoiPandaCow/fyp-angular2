@@ -1,7 +1,9 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, ElementRef, NgZone,ViewChild } from '@angular/core';
 import { FormControl, FormGroup, FormBuilder, Validators } from "@angular/forms";
 import { AuthService } from "../../services/auth.service";
 import { JobService } from "../../services/job.service";
+import {} from 'googlemaps';
+import { MapsAPILoader} from "@agm/core";
 
 @Component({
   selector: 'app-job',
@@ -10,7 +12,6 @@ import { JobService } from "../../services/job.service";
 })
 export class JobComponent implements OnInit {
 
-  // Exporting variables to the HTML page.
   messageClass;
   message;
   newJob = false;
@@ -20,13 +21,15 @@ export class JobComponent implements OnInit {
   processing = false;
   jobPosts;
 
+  public latitude: number;
+  public longitude: number;
+  public searchControl: FormControl;
+  public zoom: number;
 
-  public size = [
-    {value: 'big', display: 'Big'},
-    {value: 'small', display:'Small'}
-  ];
+  @ViewChild("search")
+  public searchElementRef: ElementRef;
 
-  constructor( private formBuilder: FormBuilder, private authService: AuthService, private jobService: JobService) {
+  constructor( private formBuilder: FormBuilder, private authService: AuthService, private jobService: JobService, private mapsAPILoader: MapsAPILoader, private ngZone: NgZone) {
     this.createNewJobForm();
   }
 
