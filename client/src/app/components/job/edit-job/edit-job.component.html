@@ -66,6 +66,7 @@
     <br>
 
     <button [disabled]="processing" type="submit" name="save" class="btn btn-info">Save Changes</button>
+    <a [routerLink]="['/delete-job/', job._id]"><button [disabled]="processing" type="button" name="button" class="btn btn-danger">Delete</button></a>
 
   </form>
 

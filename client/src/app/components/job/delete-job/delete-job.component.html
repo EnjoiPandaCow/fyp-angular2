@@ -1,0 +1,24 @@
+<div class="contentContainer">
+
+  <div class="row show-hide-messsage" *ngIf="message">
+    <div [ngClass] = "messageClass">
+      {{ message }}
+    </div>
+  </div>
+
+  <div class="col-md-6" *ngIf="foundJob">
+    <div class="modal-content">
+      <div class="modal-header">
+        <button type="button" name="button" class="close" data-dismiss="modal"></button>
+        <h4 class="modal-title">Confirm</h4>
+      </div>
+      <div class="modal-body">
+        <p>Are you sure you would like to delete this reservation?</p>
+      </div>
+      <div class="modal-footer">
+        <button [disabled]="processing" type="button" name="button" class="btn btn-success" (click)="deleteJob()">Yes</button>
+        <a routerLink="/job"><button [disabled]="processing" type="button" name="button" class="btn btn-danger">No</button></a>
+      </div>
+    </div>
+  </div>
+</div>

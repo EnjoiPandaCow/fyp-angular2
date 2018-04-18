@@ -18,6 +18,7 @@ import { DeleteUsersComponent } from "./components/users/delete-users/delete-use
 import { JobComponent} from "./components/job/job.component";
 import { ViewJobComponent} from "./components/job/view-job/view-job.component";
 import { EditJobComponent} from "./components/job/edit-job/edit-job.component";
+import { DeleteJobComponent} from "./components/job/delete-job/delete-job.component";
 
 
 // Array of objects each object being each route.
@@ -91,6 +92,11 @@ const appRoutes: Routes = [
   {
     path: 'edit-job/:id',
     component: EditJobComponent,
+    canActivate: [AuthGuard]
+  },
+  {
+    path: 'delete-job/:id',
+    component: DeleteJobComponent,
     canActivate: [AuthGuard]
   },
   {

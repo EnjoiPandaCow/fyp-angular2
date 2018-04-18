@@ -34,6 +34,7 @@ import { CollapseModule} from "ngx-bootstrap";
 import { JobComponent } from './components/job/job.component';
 import { ViewJobComponent } from './components/job/view-job/view-job.component';
 import { EditJobComponent } from './components/job/edit-job/edit-job.component';
+import { DeleteJobComponent } from './components/job/delete-job/delete-job.component';
 
 @NgModule({
   declarations: [
@@ -55,7 +56,8 @@ import { EditJobComponent } from './components/job/edit-job/edit-job.component';
     SmallFooterComponent,
     JobComponent,
     ViewJobComponent,
-    EditJobComponent
+    EditJobComponent,
+    DeleteJobComponent
   ],
   imports: [
     BrowserModule,

@@ -169,28 +169,13 @@ module.exports = (router) => {
                     if (!job) {
                         res.json({success: false, message: 'Job not found.'});
                     } else {
-                        User.findOne({_id: req.decoded.userId}, (err, user) => {
+                        job.remove((err) => {
                                 if (err) {
                                     res.json({success: false, message: err});
                                 } else {
-                                    if (!user) {
-                                        res.json({success: false, message: 'Unable to authenticate user.'});
-                                    } else {
-                                        if (user.username !== job.postedBy && user.admin !== true) {
-                                            res.json({
-                                                success: false,
-                                                message: 'You are not authorized to delete this job.'
-                                            });
-                                            job.remove((err) => {
-                                                if (err) {
-                                                    res.json({success: false, message: err});
-                                                } else {
-                                                    res.json({success: true, message: 'Job Deleted.'});
-                                                }
-                                            })
-                                        }
-                                    }
+                                    res.json({success: true, message: 'Job Deleted.'});
                                 }
+
                             }
                         );
                     }
