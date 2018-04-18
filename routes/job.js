@@ -199,6 +199,49 @@ module.exports = (router) => {
         }
     });
 
+    router.post('/comment', (req, res) => {
+        if (!req.body.comment) {
+            res.json({ success: false, message: 'No comment provided.'});
+        } else {
+            if (!req.body.id) {
+                res.json({ success: false, message: 'No ID was provided.'});
+            } else {
+                Job.findOne({ _id: req.body.id }, (err, job) => {
+                   if (err) {
+                       res.json({ success: false, message: 'Invalid job ID.'});
+                   } else {
+                       if(!job) {
+                           res.json({ success: false, message: 'Job not found.'});
+                       } else {
+                           User.findOne({ _id: req.decoded.userId}, (err, user) => {
+                              if (err) {
+                                  res.json({ success: false, message: 'Something went wrong.'});
+                              } else {
+                                  if (!user) {
+                                      res.json({ success: false, message: 'User not found.'});
+                                  } else {
+                                      job.comments.push({
+                                          comment: req.body.comment,
+                                          commentator: user.username
+                                      });
+                                      job.save((err) => {
+                                          if (err) {
+                                              res.json({ success: false, message: 'Something went wrong.'});
+                                          } else {
+                                              res.json({ success: true, message: 'Comment saved.' });
+                                          }
+                                      });
+                                  }
+                              }
+                           });
+                       }
+                   }
+                });
+            }
+        }
+
+    });
+
     return router;
 };
 

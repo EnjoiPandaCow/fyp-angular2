@@ -43,5 +43,60 @@
         </div>
       </div>
     </div>
+
+    <ul class="list-group">
+      <li class="list-group-item">
+        <!-- Post Comment Button -->
+        <button type="button" name="button" class="btn btn-sm btn-danger" (click)="draftComment(job._id)"
+                [disabled]="newComment.indexOf(job._id) > -1">Apply For Job
+        </button>
+        <div class="btn-mgn" *ngIf="newComment.indexOf(job._id) > -1">
+          <form [formGroup]="commentForm">
+            <textarea name="comment" rows="10" cols="30" class="form-control" formControlName="comment"></textarea>
+            <div [ngClass]="">
+              <ul class="help-block">
+                <li *ngIf="commentForm.comment.controls.comment.errors?.required && commentForm.controls.comment.dirty">
+                  This field is required.
+                </li>
+                <li *ngIf="(commentForm.comment.controls.comment.errors?.maxLength && commentForm.controls.comment.dirty) || (commentForm.comment.controls.comment.errors?.minLength && commentForm.controls.comment.dirty)">
+                  Comment must be at least 1 character but no more than 200.
+                </li>
+              </ul>
+            </div>
+            <br>
+            <button [disabled]="!commentForm.valid || processing" type="submit" name="button" class="btn btn-sm btn-info"
+                    (click)="postComment(job._id)">Submit Post
+            </button>
+            <button [disabled]="processing" type="button" name="button" class="btn btn-sm btn-danger"
+                    (click)="cancelSubmission(job._id)">Cancel
+            </button>
+          </form>
+        </div>
+
+
+      <li *ngIf="enabledComments.indexOf(job._id) === -1 && job.comments.length > 0" class="list-group-item">
+        <span (click)="expand(job._id)">
+          <strong>Show Comments</strong>&nbsp;&nbsp;
+          <div class="glyphicon glyphicon-comment"></div>
+        </span>
+      </li>
+
+
+      <li *ngIf="enabledComments.indexOf(job._id) > -1" class="list-group-item">
+      <span (click)="collapse(job._id)">
+        <strong>Hide Comments</strong>&nbsp;&nbsp;
+        <div class="glyphicon glyphicon-comment"></div>
+      </span>
+      </li>
+
+
+      <div *ngIf="enabledComments.indexOf(job._id) > -1">
+        <li *ngFor="let comment of job.comments" class="list-group-item">
+          <strong>{{comment.commentator}}:</strong> {{comment.comment}}
+        </li>
+      </div>
+    </ul>
   </div>
 </div>
+
+<app-footer></app-footer>

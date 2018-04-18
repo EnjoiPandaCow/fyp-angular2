@@ -46,4 +46,13 @@ export class JobService {
     return this.http.delete(this.domain + '/jobs/deleteJob/' + id, this.options).map(res => res.json());
   }
 
+  postComment(id, comment) {
+    this.createAuthenticationHeaders();
+    const jobData = {
+      id: id,
+      comment: comment
+    }
+    return this.http.post(this.domain + '/jobs/comment', jobData, this.options).map(res => res.json());
+  }
+
 }

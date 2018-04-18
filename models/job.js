@@ -30,7 +30,11 @@ const jobSchema = new Schema({
     dTime: {type: String, required: true},
     dAddress: {type: String, required: true},
     postedOn: {type: Date, default: Date.now()},
-    postedBy: {type: String}
+    postedBy: {type: String},
+    comments: [{
+        comment: { type: String },
+        commentator: {type: String}
+    }]
 
 });
 
