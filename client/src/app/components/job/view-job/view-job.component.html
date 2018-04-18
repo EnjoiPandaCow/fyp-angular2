@@ -47,7 +47,7 @@
     <ul class="list-group">
       <li class="list-group-item">
         <!-- Post Comment Button -->
-        <button type="button" name="button" class="btn btn-sm btn-danger" (click)="draftComment(job._id)"
+        <button type="button" name="button" class="btn btn-sm btn-outline-secondary" (click)="draftComment(job._id)"
                 [disabled]="newComment.indexOf(job._id) > -1">Apply For Job
         </button>
         <div class="btn-mgn" *ngIf="newComment.indexOf(job._id) > -1">
@@ -92,7 +92,7 @@
 
       <div *ngIf="enabledComments.indexOf(job._id) > -1">
         <li *ngFor="let comment of job.comments" class="list-group-item">
-          <strong>{{comment.commentator}}:</strong> {{comment.comment}}
+          <strong>{{comment.commentator}}:</strong> {{comment.comment}} <button type="button" name="button" class="btn btn-sm btn-outline-secondary">Approve </button>
         </li>
       </div>
     </ul>

@@ -141,13 +141,14 @@
         <img class="card-img-top" src="../../../assets/images/home/road.jpeg" alt="Card image cap">
         <div class="card-body">
           <p class="card-text"><strong>{{ job.title }}</strong></p>
-          <small class="text-muted">{{job.pAddress}} - {{ job.postedOn | date:'dd / MM / yyyy' }}</small>
+          <small class="text-muted">{{job.pAddress}}</small><br>
+          <small class="text-muted">{{ job.postedOn | date:'dd / MM / yyyy' }}</small>
           <br>
           <br>
           <div class="d-flex justify-content-between align-items-center">
             <div class="btn-group">
               <a [routerLink]="['/view-job/', job._id]"><button type="button" class="btn btn-sm btn-outline-secondary">View</button></a>
-              <button type="button" class="btn btn-sm btn-outline-secondary">Edit</button>
+              <a [routerLink]="['/edit-job/', job._id]" *ngIf="username === job.postedBy || authService.isAdmin()"><button type="button" class=" edit btn btn-sm btn-outline-secondary">Edit</button></a>
             </div>
             <small class="text-muted">{{ job.postedBy }}</small>
           </div>

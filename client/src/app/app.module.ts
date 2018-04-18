@@ -23,7 +23,7 @@ import { DatePipe} from "@angular/common";
 import { DeleteReservationComponent } from './components/reservation/delete-reservation/delete-reservation.component';
 import { AdminComponent } from './components/admin/admin.component';
 import { UsersComponent } from './components/users/users.component';
-import {AdminGuard} from "./guards/admin.guard";
+import { AdminGuard} from "./guards/admin.guard";
 import { EditUsersComponent } from './components/users/edit-users/edit-users.component';
 import { DeleteUsersComponent } from './components/users/delete-users/delete-users.component';
 import { FooterComponent } from './components/footer/footer.component';
@@ -32,8 +32,8 @@ import { ServiceWorkerModule } from '@angular/service-worker';
 import { environment } from '../environments/environment';
 import { CollapseModule} from "ngx-bootstrap";
 import { JobComponent } from './components/job/job.component';
-import { AgmCoreModule} from "@agm/core";
 import { ViewJobComponent } from './components/job/view-job/view-job.component';
+import { EditJobComponent } from './components/job/edit-job/edit-job.component';
 
 @NgModule({
   declarations: [
@@ -54,7 +54,8 @@ import { ViewJobComponent } from './components/job/view-job/view-job.component';
     FooterComponent,
     SmallFooterComponent,
     JobComponent,
-    ViewJobComponent
+    ViewJobComponent,
+    EditJobComponent
   ],
   imports: [
     BrowserModule,

@@ -1,0 +1,72 @@
+<div class="contentContainer">
+
+  <h1 class="page-header">Edit Job</h1>
+
+  <div class="row show-hide-message" *ngIf="message">
+    <div [ngClass]="messageClass">
+      {{ message }}
+    </div>
+  </div>
+
+  <form (submit)="updateJobSubmit()" *ngIf="!loading">
+
+    <div class="form-group">
+      <label for="title">Title</label>
+      <input [disabled]="processing" type="text" name="title" placeholder="Title" class="form-control" [(ngModel)]="job.title" />
+    </div>
+
+    <div class="form-group">
+      <label for="description">Description</label>
+      <input [disabled]="processing" type="text" name="description" placeholder="Description" class="form-control" [(ngModel)]="job.description" />
+    </div>
+
+    <div class="row">
+      <div class="col-md-6">
+        <div class="form-group">
+          <label for="pDate">Pickup Date</label>
+          <input [disabled]="processing" type="date" name="pDate" placeholder="Pickup Date" class="form-control" [(ngModel)]="pDate" />
+        </div>
+      </div>
+
+      <div class="col-md-6">
+        <div class="form-group">
+          <label for="pTime">Pickup Time</label>
+          <input [disabled]="processing" type="time" name="pTime" placeholder="Pickup Time" class="form-control" [(ngModel)]="job.pTime" />
+        </div>
+      </div>
+    </div>
+
+
+    <div class="form-group">
+      <label for="pAddress">Pickup Address</label>
+      <input [disabled]="processing" type="text" name="pAddress" placeholder="Pickup Address" class="form-control" [(ngModel)]="job.pAddress" />
+    </div>
+
+    <div class="row">
+      <div class="col-md-6">
+        <div class="form-group">
+          <label for="dDate">Drop Off Date</label>
+          <input [disabled]="processing" type="date" name="dDate" placeholder="Drop Off Date" class="form-control" [(ngModel)]="dDate" />
+        </div>
+      </div>
+
+      <div class="col-md-6">
+        <div class="form-group">
+          <label for="dTime">Drop Off Time</label>
+          <input [disabled]="processing" type="time" name="dTime" placeholder="Drop Off Time" class="form-control" [(ngModel)]="job.dTime" />
+        </div>
+      </div>
+    </div>
+
+    <div class="form-group">
+      <label for="pAddress">Drop Off Address</label>
+      <input [disabled]="processing" type="text" name="dAddress" placeholder="Drop Off Address" class="form-control" [(ngModel)]="job.dAddress" />
+    </div>
+
+    <br>
+
+    <button [disabled]="processing" type="submit" name="save" class="btn btn-info">Save Changes</button>
+
+  </form>
+
+</div>

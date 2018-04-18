@@ -33,7 +33,9 @@ const jobSchema = new Schema({
     postedBy: {type: String},
     comments: [{
         comment: { type: String },
-        commentator: {type: String}
+        commentator: {type: String},
+        approved: {type: Boolean, default: false},
+        approvedBy: {type: String}
     }]
 
 });
