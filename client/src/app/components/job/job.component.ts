@@ -3,8 +3,7 @@ import { FormControl, FormGroup, FormBuilder, Validators } from "@angular/forms"
 import { AuthService } from "../../services/auth.service";
 import { JobService } from "../../services/job.service";
 import { ActivatedRoute, Router} from "@angular/router";
-
-
+import { CloudinaryOptions, CloudinaryUploader } from 'ng2-cloudinary';
 
 @Component({
   selector: 'app-job',
@@ -20,6 +19,13 @@ export class JobComponent implements OnInit {
   username;
   processing = false;
   jobPosts;
+  url;
+
+  imageId: string;
+
+  uploader: CloudinaryUploader = new CloudinaryUploader(
+    new CloudinaryOptions({ cloudName: 'cjosullivan10', uploadPreset: 'obj0agcd' })
+  );
 
   @ViewChild("search")
   public searchElementRef: ElementRef;
@@ -30,6 +36,14 @@ export class JobComponent implements OnInit {
                private router: Router
   ) {
     this.createNewJobForm();
+
+    this.uploader.onSuccessItem = (item: any, response: string, status: number, headers: any): any => {
+      let res: any = JSON.parse(response);
+      this.url = res.url;
+      this.imageId = res.public_id;
+      return { item, response, status, headers };
+    };
+
   }
 
   createNewJobForm() {
@@ -88,7 +102,8 @@ export class JobComponent implements OnInit {
       dDate: this.form.get('dDate').value,
       dTime: this.form.get('dTime').value,
       dAddress: this.form.get('dAddress').value,
-      postedBy: this.username
+      postedBy: this.username,
+      photo: this.url
     };
 
     this.jobService.newJob(job).subscribe(data => {
@@ -119,6 +134,10 @@ export class JobComponent implements OnInit {
     this.jobService.getAllJobs().subscribe(data => {
       this.jobPosts = data.jobs;
     });
+  }
+
+  upload() {
+    this.uploader.uploadAll();
   }
 
   ngOnInit() {

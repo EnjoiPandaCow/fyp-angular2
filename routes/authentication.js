@@ -267,7 +267,7 @@ module.exports = (router) => {
        }
     });
 
-    // // Middleware that grabs the token from the header
+    // Middleware that grabs the token from the header
     router.use((req, res, next) => {
         const token = req.headers['authorization'];
         //const admin = req.headers['admin'];

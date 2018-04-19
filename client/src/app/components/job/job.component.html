@@ -13,15 +13,28 @@
   <form [formGroup]="form" name="jobForm" (submit)="onJobSubmit()" *ngIf="newJob">
 
     <!-- Title Input -->
-    <div class="form-group">
-      <label for="title">Title</label>
-      <div [ngClass]="{'has-success': form.controls.title.valid, 'has-error': form.controls.title.dirty && form.controls.title.errors}">
-        <input type="text" name="title" class="form-control" placeholder="Title" autocomplete="off" formControlName="title" />
-        <ul class="help-block">
-          <li *ngIf="form.controls.title.dirty && form.controls.title.errors?.required">This field is required.</li>
-        </ul>
+    <div class="row">
+      <div class="col-md-6">
+        <div class="form-group">
+          <label for="title">Title</label>
+          <div [ngClass]="{'has-success': form.controls.title.valid, 'has-error': form.controls.title.dirty && form.controls.title.errors}">
+            <input type="text" name="title" class="form-control" placeholder="Title" autocomplete="off" formControlName="title" />
+            <ul class="help-block">
+              <li *ngIf="form.controls.title.dirty && form.controls.title.errors?.required">This field is required.</li>
+            </ul>
+          </div>
+        </div>
       </div>
-    </div>
+
+      <div class="col-md-6">
+        <div class="form-group">
+          <label for="image">Image</label><br><br>
+            <cl-image class="img" [width]="300" [height]="250" [public-id]="imageId" [cloud-name]="uploader.cloudName"></cl-image><br><br>
+            <input type="file" ng2FileSelect [uploader]="uploader" accept="image/*;capture=camera"> <button (click)="upload()">Upload</button><br>
+          </div>
+        </div>
+      </div>
+
 
     <!-- Description Input -->
     <div class="form-group">
@@ -128,8 +141,10 @@
     </div>
 
 
-    <button [disabled]="processing || !form.valid"  type="submit" name="button" class="btn btn-success">Submit</button>
-    <div class="paypal-checkout-btn"></div>
+
+
+    <button [disabled]="processing || !form.valid" type="submit" name="button" class="btn btn-success">Submit</button>
+
 
 
 
@@ -142,7 +157,7 @@
   <div *ngIf="!newJob" class="row">
     <div class="col-md-4" *ngFor="let job of jobPosts">
       <div class="card mb-4 box-shadow">
-        <img class="card-img-top" src="../../../assets/images/home/road.jpeg" alt="Card image cap">
+        <img class="card-img-top" src="{{job.photo}}" width="300" height="250" alt="Card image cap">
         <div class="card-body">
           <p class="card-text"><strong>{{ job.title }}</strong></p>
           <small class="text-muted">{{job.pAddress}}</small><br>

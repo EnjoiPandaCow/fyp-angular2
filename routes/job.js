@@ -43,7 +43,8 @@ module.exports = (router) => {
                                                 dAddress: req.body.dAddress,
                                                 dDate: req.body.dDate,
                                                 dTime: req.body.dTime,
-                                                postedBy: req.body.postedBy
+                                                postedBy: req.body.postedBy,
+                                                photo: req.body.photo
                                             });
                                             job.save((err) => {
                                                 if (err) {

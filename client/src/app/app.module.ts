@@ -36,6 +36,9 @@ import { ViewJobComponent } from './components/job/view-job/view-job.component';
 import { EditJobComponent } from './components/job/edit-job/edit-job.component';
 import { DeleteJobComponent } from './components/job/delete-job/delete-job.component';
 import { PaypalComponent } from './components/paypal/paypal.component';
+import { CommonModule } from '@angular/common';
+import { Ng2CloudinaryModule } from 'ng2-cloudinary';
+import { FileUploadModule} from "ng2-file-upload";
 
 @NgModule({
   declarations: [
@@ -70,6 +73,8 @@ import { PaypalComponent } from './components/paypal/paypal.component';
     FlashMessagesModule,
     ServiceWorkerModule.register('/ngsw-worker.js', {enabled: environment.production}),
     CollapseModule.forRoot(),
+    Ng2CloudinaryModule,
+    FileUploadModule
   ],
   providers: [
     [AuthService, AuthGuard, NotAuthGuard, AdminGuard, ReservationService, JobService, DatePipe],

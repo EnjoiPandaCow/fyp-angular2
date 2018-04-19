@@ -31,13 +31,13 @@ const jobSchema = new Schema({
     dAddress: {type: String, required: true},
     postedOn: {type: Date, default: Date.now()},
     postedBy: {type: String},
+    photo: {type: String},
     comments: [{
         comment: { type: String },
         commentator: {type: String},
         approved: {type: Boolean, default: false},
         approvedBy: {type: String}
-    }]
-
+    }],
 });
 
 module.exports = mongoose.model('Job', jobSchema);
