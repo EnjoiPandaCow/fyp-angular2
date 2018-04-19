@@ -1,7 +1,10 @@
-import { Component, OnInit, ElementRef, NgZone,ViewChild } from '@angular/core';
+import { Component, OnInit, ElementRef, NgZone, ViewChild, AfterViewChecked } from '@angular/core';
 import { FormControl, FormGroup, FormBuilder, Validators } from "@angular/forms";
 import { AuthService } from "../../services/auth.service";
 import { JobService } from "../../services/job.service";
+import { ActivatedRoute, Router} from "@angular/router";
+
+
 
 @Component({
   selector: 'app-job',
@@ -21,7 +24,11 @@ export class JobComponent implements OnInit {
   @ViewChild("search")
   public searchElementRef: ElementRef;
 
-  constructor( private formBuilder: FormBuilder, private authService: AuthService, private jobService: JobService) {
+  constructor( private formBuilder: FormBuilder,
+               private authService: AuthService,
+               private jobService: JobService,
+               private router: Router
+  ) {
     this.createNewJobForm();
   }
 
@@ -93,7 +100,9 @@ export class JobComponent implements OnInit {
       } else {
         this.messageClass = 'alert alert-success';
         this.message = data.message;
-        this.getAllJobs();
+        setTimeout(() => {
+          this.router.navigate(['/payment']);
+        }, 2000);
 
         setTimeout(() => {
           this.newJob = false;

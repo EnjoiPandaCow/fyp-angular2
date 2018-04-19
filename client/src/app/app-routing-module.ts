@@ -19,6 +19,7 @@ import { JobComponent} from "./components/job/job.component";
 import { ViewJobComponent} from "./components/job/view-job/view-job.component";
 import { EditJobComponent} from "./components/job/edit-job/edit-job.component";
 import { DeleteJobComponent} from "./components/job/delete-job/delete-job.component";
+import { PaypalComponent} from "./components/paypal/paypal.component";
 
 
 // Array of objects each object being each route.
@@ -104,8 +105,15 @@ const appRoutes: Routes = [
     component: DeleteUsersComponent,
     canActivate: [AuthGuard]
   },
+  {
+    path: 'payment',
+    component: PaypalComponent,
+    canActivate: [AuthGuard]
+  },
   // When ever there is a route that is accessed that is not defined.
-  { path: '**', component: HomeComponent}
+  { path: '**',
+    component: HomeComponent
+  }
 ];
 
 @NgModule({
