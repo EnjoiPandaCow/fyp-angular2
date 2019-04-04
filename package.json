@@ -1,6 +1,9 @@
 {
   "name": "fyp_angular2",
   "version": "1.0.0",
+  "engines": {
+    "node": "8.0.0"
+  },
   "description": "Shyft - Package Transportation System.",
   "main": "index.js",
   "scripts": {
