@@ -12,7 +12,7 @@
   },
   "private": true,
   "dependencies": {
-    "@angular/cli": "1.6.8",
+    "@angular/cli": "14.2.8",
     "@angular/animations": "^5.2.0",
     "@angular/common": "^5.2.0",
     "@angular/compiler": "^5.2.0",
@@ -36,7 +36,7 @@
   },
   "devDependencies": {
     "@agm/core": "^1.0.0-beta.2",
-    "@angular/cli": "1.6.8",
+    "@angular/cli": "14.2.8",
     "@angular/compiler-cli": "^5.2.0",
     "@angular/language-service": "^5.2.0",
     "@types/googlemaps": "^3.30.8",
